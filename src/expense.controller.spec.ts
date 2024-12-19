@@ -18,7 +18,7 @@ describe('ExpenseController', () => {
                         findAll: jest.fn(),
                         findOne: jest.fn(),
                         update: jest.fn(),
-                        remove: jest.fn().mockImplementation(() => undefined), // Виправлення тут
+                        remove: jest.fn().mockImplementation(() => undefined),
                     },
                 },
             ],
@@ -33,7 +33,7 @@ describe('ExpenseController', () => {
     });
 
     it('should create an expense', () => {
-        const expense: Expense = { description: 'Test Expense', amount: 100, date: '2024-12-19' };
+        const expense: Expense = { description: 'Test Expense', amount: 100, date: '2024-12-19', category: 'Food' };
         jest.spyOn(expenseService, 'create').mockImplementation(() => expense);
         expect(expenseController.create(expense)).toBe(expense);
     });
@@ -45,19 +45,19 @@ describe('ExpenseController', () => {
     });
 
     it('should return a single expense', () => {
-        const expense: Expense = { description: 'Test Expense', amount: 100, date: '2024-12-19' };
+        const expense: Expense = { description: 'Test Expense', amount: 100, date: '2024-12-19', category: 'Food' };
         jest.spyOn(expenseService, 'findOne').mockImplementation(() => expense);
         expect(expenseController.findOne('0')).toBe(expense);
     });
 
     it('should update an expense', () => {
-        const expense: Expense = { description: 'Updated Expense', amount: 150, date: '2024-12-20' };
+        const expense: Expense = { description: 'Updated Expense', amount: 150, date: '2024-12-20', category: 'Entertainment' };
         jest.spyOn(expenseService, 'update').mockImplementation(() => expense);
         expect(expenseController.update('0', expense)).toBe(expense);
     });
 
     it('should remove an expense', () => {
-        jest.spyOn(expenseService, 'remove').mockImplementation(() => undefined); // Виправлення тут
+        jest.spyOn(expenseService, 'remove').mockImplementation(() => undefined);
         expect(expenseController.remove('0')).toBeUndefined();
     });
 });

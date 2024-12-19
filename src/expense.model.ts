@@ -12,4 +12,8 @@ export class Expense {
     @IsNotEmpty()
     @IsString()
     date: string;
+
+    @IsNotEmpty()
+    @IsString()
+    category: string; // New category field
 }
